@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkve7hh625diy"]
+[gd_scene load_steps=3 format=3 uid="uid://dkve7hh625diy"]
 
 [ext_resource type="Script" uid="uid://btb7va1pf61nj" path="res://scripts/main.gd" id="1_o5qli"]
+
+[sub_resource type="Environment" id="Environment_o5qli"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_o5qli")
@@ -17,3 +19,8 @@ tracker = &"left_hand"
 [node name="RightHand" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0.5)
 tracker = &"right_hand"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o5qli")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
