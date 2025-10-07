@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn37wfalhkc0p"]
+
+[ext_resource type="Script" uid="uid://cjqvu18s2m3cx" path="res://scripts/block_spawner.gd" id="1_aogsa"]
+
+[node name="BlockSpawner" type="Node3D"]
+script = ExtResource("1_aogsa")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+size = Vector3(0.2, 0.2, 0.2)

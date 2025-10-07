@@ -1,8 +1,13 @@
 extends Node3D
 
+# instantiate the XR interface with an object
 var xr_interface: XRInterface
 
+# loading the block spawner scene
+@onready var BlockSpawner = load("res://scripts/block_spawner.gd")
+
 func _ready():
+	
 	xr_interface = XRServer.find_interface("OpenXR")
 	if xr_interface and xr_interface.is_initialized():
 		print("OpenXR initialized successfully")

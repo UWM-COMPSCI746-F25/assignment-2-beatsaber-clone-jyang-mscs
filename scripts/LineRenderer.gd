@@ -19,7 +19,7 @@ var cameraOrigin
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	
 	
 	if points.size() < 2:

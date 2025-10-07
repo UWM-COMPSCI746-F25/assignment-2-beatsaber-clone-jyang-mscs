@@ -1,19 +1,19 @@
 extends XRController3D
 
 var velocity = 0
-const RAY_LENGTH = 5
+const RAY_LENGTH = 1
 @onready var lineRender = $"LHMeshInstance3D"
 
 func _ready():
 	pass
 
 # actions to happen at every frame
-func _process(delta):
+func _process(_delta):
 	pass
 
 # applies physics with the pass through value delta
 # for physics simulation
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	# raycast line
 	var space_state = get_world_3d().direct_space_state
@@ -36,5 +36,5 @@ func _physics_process(delta):
 	
 # connecting the left controller collision object
 # to the script
-func _on_lh_area_3d_area_entered(area):
+func _on_lh_area_3d_area_entered(_area):
 	pass # Replace with function body.
