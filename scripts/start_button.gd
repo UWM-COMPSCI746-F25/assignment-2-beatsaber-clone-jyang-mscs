@@ -3,6 +3,9 @@ extends StaticBody3D
 # this variable will be use to animate the button
 @onready var button = $Button
 
+# this variable is for manupilating the UI text
+@onready var ui = $UI
+
 # enum object - list different states of button
 enum STATE {
 	ON,
@@ -42,3 +45,7 @@ func turn_on():
 	button.transform.height = 0.007
 	button.transform.height = 0.02
 	
+
+
+func _on_button_area_area_entered(area):
+	pass # Replace with function body.

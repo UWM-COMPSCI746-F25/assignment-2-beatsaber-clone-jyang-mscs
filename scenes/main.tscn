@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dkve7hh625diy"]
+[gd_scene load_steps=20 format=4 uid="uid://dkve7hh625diy"]
 
 [ext_resource type="Script" uid="uid://btb7va1pf61nj" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://b8p5j27br831m" path="res://scenes/quest2-controller-model_0.png" id="2_0wfyh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://j7myf8g3jrrl" path="res://colors/left_laser.tres" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://dh8ft863lpjmt" path="res://scripts/right_controller.gd" id="4_tbgi4"]
 [ext_resource type="Script" uid="uid://d0dtenw7utkgt" path="res://scripts/LineRenderer.gd" id="4_tefeu"]
+[ext_resource type="PackedScene" uid="uid://dvngenekbb0eg" path="res://scenes/start_buttontscn.tscn" id="7_o6xl0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ise3j"]
 resource_name = "shell:quest2ControllerMAT"
@@ -61,7 +62,8 @@ bind/6/name = &"b_thumbstick"
 bind/6/bone = -1
 bind/6/pose = Transform3D(-0.129245, 0.984491, -0.118627, -0.00692742, -0.120524, -0.992686, -0.991588, -0.127478, 0.0223972, 0.00619766, 0.00227286, 0.00861042)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jyhfs"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_tipki"]
+radius = 0.1
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_o6xl0"]
 
@@ -110,7 +112,8 @@ bind/6/name = &"b_thumbstick_2"
 bind/6/bone = -1
 bind/6/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00935476, 0.00472996, -0.0027986)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tbgi4"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_85g3d"]
+radius = 0.1
 
 [sub_resource type="Environment" id="Environment_o5qli"]
 background_mode = 1
@@ -148,7 +151,8 @@ skeleton = NodePath("../..")
 [node name="LHArea3D" type="Area3D" parent="XROrigin3D/LeftHand"]
 
 [node name="LHCollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/LeftHand/LHArea3D"]
-shape = SubResource("CapsuleShape3D_jyhfs")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_tipki")
 
 [node name="LHMeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftHand"]
 material_override = ExtResource("4_o6xl0")
@@ -169,42 +173,9 @@ skeleton = NodePath("../..")
 [node name="RHArea3D" type="Area3D" parent="XROrigin3D/RightHand"]
 
 [node name="RHCollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/RightHand/RHArea3D"]
-shape = SubResource("CapsuleShape3D_tbgi4")
+shape = SubResource("SphereShape3D_85g3d")
 
 [node name="RHMeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightHand"]
-
-[node name="UI" type="Control" parent="XROrigin3D"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="XROrigin3D/UI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -231.5
-offset_top = -70.5
-offset_right = 231.5
-offset_bottom = 70.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Press the button to
- start the game"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_o5qli")
@@ -223,6 +194,9 @@ material = SubResource("StandardMaterial3D_o5qli")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
 shape = SubResource("BoxShape3D_0wfyh")
+
+[node name="StartButton" parent="." instance=ExtResource("7_o6xl0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
 [connection signal="area_entered" from="XROrigin3D/LeftHand/LHArea3D" to="XROrigin3D/LeftHand" method="_on_lh_area_3d_area_entered"]
 [connection signal="area_entered" from="XROrigin3D/RightHand/RHArea3D" to="XROrigin3D/RightHand" method="_on_rh_area_3d_area_entered"]
