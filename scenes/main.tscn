@@ -198,5 +198,6 @@ shape = SubResource("BoxShape3D_0wfyh")
 [node name="StartButton" parent="." instance=ExtResource("7_o6xl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
+[connection signal="button_pressed" from="XROrigin3D/LeftHand" to="XROrigin3D/LeftHand" method="_on_button_pressed"]
 [connection signal="area_entered" from="XROrigin3D/LeftHand/LHArea3D" to="XROrigin3D/LeftHand" method="_on_lh_area_3d_area_entered"]
 [connection signal="area_entered" from="XROrigin3D/RightHand/RHArea3D" to="XROrigin3D/RightHand" method="_on_rh_area_3d_area_entered"]
