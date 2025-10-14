@@ -34,8 +34,8 @@ func _physics_process(_delta):
 			lineRender.points[1] = result.position
 			print("Collided with", + result.collider.name)
 	else:
-		lineRender.points[0] = null
-		lineRender.points[1] = null
+		lineRender.points[0] = Vector3(0,0,0)
+		lineRender.points[1] = Vector3(0,0,0)
 	
 # connecting the left controller collision object
 # to the script

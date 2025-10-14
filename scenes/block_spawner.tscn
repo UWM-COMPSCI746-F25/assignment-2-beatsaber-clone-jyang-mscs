@@ -1,10 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dn37wfalhkc0p"]
+[gd_scene load_steps=3 format=3 uid="uid://dn37wfalhkc0p"]
 
 [ext_resource type="Script" uid="uid://cjqvu18s2m3cx" path="res://scripts/block_spawner.gd" id="1_aogsa"]
+[ext_resource type="PackedScene" uid="uid://bw11tg3iq6aim" path="res://scenes/block.tscn" id="2_2ehg7"]
 
 [node name="BlockSpawner" type="Node3D"]
 script = ExtResource("1_aogsa")
+block_to_spawn = ExtResource("2_2ehg7")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-size = Vector3(0.2, 0.2, 0.2)
+[node name="Marker3D" type="Marker3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

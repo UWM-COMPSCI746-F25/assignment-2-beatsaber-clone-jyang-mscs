@@ -192,6 +192,7 @@ camera_attributes = SubResource("CameraAttributesPhysical_o5qli")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -0.420972, 0.907073, 0, -0.907073, -0.420972, 0, 6.7842, -4.40512)
+shadow_enabled = true
 
 [node name="Platform" type="StaticBody3D" parent="."]
 
