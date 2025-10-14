@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://dkve7hh625diy"]
+[gd_scene load_steps=22 format=4 uid="uid://dkve7hh625diy"]
 
 [ext_resource type="Script" uid="uid://btb7va1pf61nj" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://b8p5j27br831m" path="res://scenes/quest2-controller-model_0.png" id="2_0wfyh"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dh8ft863lpjmt" path="res://scripts/right_controller.gd" id="4_tbgi4"]
 [ext_resource type="Script" uid="uid://d0dtenw7utkgt" path="res://scripts/LineRenderer.gd" id="4_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dvngenekbb0eg" path="res://scenes/start_buttontscn.tscn" id="7_o6xl0"]
+[ext_resource type="Material" uid="uid://cc0imshsvrs1h" path="res://colors/right_laser.tres" id="7_tipki"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ise3j"]
 resource_name = "shell:quest2ControllerMAT"
@@ -115,6 +116,8 @@ bind/6/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00935476, 0.00472996, -0.
 [sub_resource type="SphereShape3D" id="SphereShape3D_85g3d"]
 radius = 0.1
 
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_85g3d"]
+
 [sub_resource type="Environment" id="Environment_o5qli"]
 background_mode = 1
 background_color = Color(0.827517, 0.604865, 0.974434, 1)
@@ -155,6 +158,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 shape = SubResource("SphereShape3D_tipki")
 
 [node name="LHMeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftHand"]
+layers = 513
 material_override = ExtResource("4_o6xl0")
 mesh = SubResource("ImmediateMesh_o6xl0")
 script = ExtResource("4_tefeu")
@@ -173,9 +177,14 @@ skeleton = NodePath("../..")
 [node name="RHArea3D" type="Area3D" parent="XROrigin3D/RightHand"]
 
 [node name="RHCollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/RightHand/RHArea3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("SphereShape3D_85g3d")
 
 [node name="RHMeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightHand"]
+layers = 513
+material_override = ExtResource("7_tipki")
+mesh = SubResource("ImmediateMesh_85g3d")
+script = ExtResource("4_tefeu")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_o5qli")
@@ -200,4 +209,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
 [connection signal="button_pressed" from="XROrigin3D/LeftHand" to="XROrigin3D/LeftHand" method="_on_button_pressed"]
 [connection signal="area_entered" from="XROrigin3D/LeftHand/LHArea3D" to="XROrigin3D/LeftHand" method="_on_lh_area_3d_area_entered"]
+[connection signal="button_pressed" from="XROrigin3D/RightHand" to="XROrigin3D/RightHand" method="_on_button_pressed"]
 [connection signal="area_entered" from="XROrigin3D/RightHand/RHArea3D" to="XROrigin3D/RightHand" method="_on_rh_area_3d_area_entered"]

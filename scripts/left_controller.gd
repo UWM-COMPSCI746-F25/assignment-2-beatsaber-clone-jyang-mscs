@@ -34,8 +34,10 @@ func _physics_process(_delta):
 			lineRender.points[1] = result.position
 			print("Collided with", + result.collider.name)
 	
+	else:
+		lineRender.points[0] = null
+		lineRender.points[1] = null
 	
-
 	
 # connecting the left controller collision object
 # to the script
@@ -49,4 +51,3 @@ func _on_button_pressed(name):
 			saberState = true
 		else:
 			saberState = false
-		pass
