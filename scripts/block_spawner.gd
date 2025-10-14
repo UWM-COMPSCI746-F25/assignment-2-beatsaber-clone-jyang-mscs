@@ -17,3 +17,5 @@ func _on_timer_timeout():
 	new_block.material - load("res://colors/left_boxes_red.tres")
 	add_child(new_block)
 	new_block.global_position = marker_3d.global_position
+	
+	block_to_spawn.emit(new_block)
