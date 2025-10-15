@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkve7hh625diy"]
+[gd_scene load_steps=10 format=3 uid="uid://dkve7hh625diy"]
 
 [ext_resource type="Script" uid="uid://btb7va1pf61nj" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://xgu3kla2nnrj" path="res://scenes/xr_player.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://dn37wfalhkc0p" path="res://scenes/blue_block_spawner.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://h2k6a72o7wpy" path="res://scenes/red_block_spawner.tscn" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dvngenekbb0eg" path="res://scenes/start_buttontscn.tscn" id="7_o6xl0"]
 
 [sub_resource type="Environment" id="Environment_o5qli"]
@@ -44,3 +46,9 @@ shape = SubResource("BoxShape3D_0wfyh")
 
 [node name="StartButton" parent="." instance=ExtResource("7_o6xl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="BlueBlockSpawner" parent="." instance=ExtResource("4_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, -10)
+
+[node name="RedBlockSpawner" parent="." instance=ExtResource("5_tbgi4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0, -10)

@@ -21,9 +21,9 @@ func take_damage():
 	if health == 0:
 		set_physics_process(false)
 		gravity_scale = 1.0
-		var direction = global_position.direction_to(player.global_position)
-		var randomUpwardForce = Vector3.UP * randf_range(1.0,5.0)
-		apply_central_impulse(direction * 10 + randomUpwardForce)
+		#var direction = global_position.direction_to(player.global_position)
+		#var randomUpwardForce = Vector3.UP * randf_range(1.0,5.0)
+		#apply_central_impulse(direction * 10 + randomUpwardForce)
 		
 		timer.start()
 

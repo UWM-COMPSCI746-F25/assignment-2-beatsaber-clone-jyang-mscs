@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bw11tg3iq6aim"]
+[gd_scene load_steps=5 format=3 uid="uid://bw11tg3iq6aim"]
 
-[ext_resource type="Script" uid="uid://c0fawmllr247a" path="res://scripts/block.gd" id="1_8r6n6"]
+[ext_resource type="Script" uid="uid://c0fawmllr247a" path="res://scripts/block.gd" id="1_h3kq6"]
+[ext_resource type="Material" uid="uid://corecsjg37erl" path="res://colors/left_boxes_red.tres" id="2_mk88m"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8r6n6"]
 size = Vector3(0.2, 0.2, 0.2)
@@ -8,13 +9,14 @@ size = Vector3(0.2, 0.2, 0.2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_cgrg5"]
 size = Vector3(0.2, 0.2, 0.2)
 
-[node name="Block" type="RigidBody3D"]
+[node name="RedBlock" type="RigidBody3D"]
 gravity_scale = 0.0
-script = ExtResource("1_8r6n6")
+script = ExtResource("1_h3kq6")
 
 [node name="Block_model" type="MeshInstance3D" parent="."]
 layers = 545
 mesh = SubResource("BoxMesh_8r6n6")
+surface_material_override/0 = ExtResource("2_mk88m")
 
 [node name="CollisionBlock" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_cgrg5")

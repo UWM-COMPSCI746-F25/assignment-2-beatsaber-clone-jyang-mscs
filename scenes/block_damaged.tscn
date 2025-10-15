@@ -35,5 +35,3 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.400641, 5.51445, -0.5
 [node name="Plane" parent="." index="9"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 visible = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
