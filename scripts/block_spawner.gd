@@ -2,14 +2,17 @@ extends Node3D
 
 @export var block_to_spawn: PackedScene = null
 
-@onready var dir = Vector3(0, 0, 1)
-@onready var speed = 1
+
 
 @onready var marker_3d = %Marker3D
 @onready var timer = %Timer
 
+var rng = RandomNumberGenerator.new()
+
 func _process(delta):
-	global_position += dir * (speed * delta)
+	
+	timer.wait_time = rng.randf_range(0.5, 1.5)
+	
 	
 	
 func _on_timer_timeout():
