@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://h2k6a72o7wpy"]
 
-[ext_resource type="Script" uid="uid://cjqvu18s2m3cx" path="res://scripts/block_spawner.gd" id="1_vfh8y"]
+[ext_resource type="Script" uid="uid://cjqvu18s2m3cx" path="res://scripts/red_block_spawner.gd" id="1_vfh8y"]
 [ext_resource type="PackedScene" uid="uid://bw11tg3iq6aim" path="res://scenes/red_block.tscn" id="2_l8u37"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2ehg7"]

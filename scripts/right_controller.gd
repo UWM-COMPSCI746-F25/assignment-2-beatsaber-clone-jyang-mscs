@@ -39,8 +39,9 @@ func _physics_process(_delta):
 	
 # connecting the left controller collision object
 # to the script
-func _on_rh_area_3d_area_entered(_area):
-	pass # Replace with function body.
+func _on_rh_area_3d_area_entered(body):
+	if body.has_method("take_damage"):
+		body.take_damage()
 
 func _on_button_pressed(name):
 	if name == "ax_button":

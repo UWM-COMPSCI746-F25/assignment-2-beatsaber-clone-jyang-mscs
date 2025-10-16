@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2vv16ov5pcda"]
+[gd_scene load_steps=6 format=3 uid="uid://c2vv16ov5pcda"]
 
-[ext_resource type="Script" uid="uid://c0fawmllr247a" path="res://scripts/block.gd" id="1_t2okn"]
+[ext_resource type="Script" uid="uid://wt0n3vyson3b" path="res://scripts/blue_block.gd" id="1_km6kx"]
 [ext_resource type="Material" uid="uid://4x4c6dk4mxxi" path="res://colors/right_boxes_blue.tres" id="2_nsl8n"]
+[ext_resource type="AudioStream" uid="uid://ldhdvef7vxgx" path="res://audio/hit-sound.mp3" id="3_km6kx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8r6n6"]
 size = Vector3(0.2, 0.2, 0.2)
@@ -10,11 +11,13 @@ size = Vector3(0.2, 0.2, 0.2)
 size = Vector3(0.2, 0.2, 0.2)
 
 [node name="BlueBlock" type="RigidBody3D"]
+collision_layer = 513
+collision_mask = 513
 gravity_scale = 0.0
-script = ExtResource("1_t2okn")
+script = ExtResource("1_km6kx")
 
 [node name="Block_model" type="MeshInstance3D" parent="."]
-layers = 545
+layers = 513
 mesh = SubResource("BoxMesh_8r6n6")
 surface_material_override/0 = ExtResource("2_nsl8n")
 
@@ -25,5 +28,9 @@ shape = SubResource("BoxShape3D_cgrg5")
 unique_name_in_owner = true
 wait_time = 3.0
 one_shot = true
+
+[node name="HurtSound" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_km6kx")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

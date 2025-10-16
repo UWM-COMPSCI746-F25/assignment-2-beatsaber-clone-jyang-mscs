@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ds0yn7x7ls0ku" path="res://scripts/left_controller.gd" id="1_wrvet"]
 [ext_resource type="Texture2D" uid="uid://b8p5j27br831m" path="res://scenes/quest2-controller-model_0.png" id="2_mvv4w"]
 [ext_resource type="Material" uid="uid://j7myf8g3jrrl" path="res://colors/left_laser.tres" id="3_3770h"]
-[ext_resource type="Script" uid="uid://d0dtenw7utkgt" path="res://scripts/LineRenderer.gd" id="4_ecy5y"]
+[ext_resource type="Script" uid="uid://d0dtenw7utkgt" path="res://scripts/RedLineRenderer.gd" id="4_ecy5y"]
 [ext_resource type="Script" uid="uid://dh8ft863lpjmt" path="res://scripts/right_controller.gd" id="5_cibq4"]
 [ext_resource type="Material" uid="uid://cc0imshsvrs1h" path="res://colors/right_laser.tres" id="6_jhdqs"]
 
@@ -61,8 +61,10 @@ bind/6/name = &"b_thumbstick"
 bind/6/bone = -1
 bind/6/pose = Transform3D(-0.129245, 0.984491, -0.118627, -0.00692742, -0.120524, -0.992686, -0.991588, -0.127478, 0.0223972, 0.00619766, 0.00227286, 0.00861042)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_tipki"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wrvet"]
+margin = 0.1
 radius = 0.1
+height = 1.0
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_o6xl0"]
 
@@ -111,8 +113,9 @@ bind/6/name = &"b_thumbstick_2"
 bind/6/bone = -1
 bind/6/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00935476, 0.00472996, -0.0027986)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_85g3d"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mvv4w"]
 radius = 0.1
+height = 1.0
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_85g3d"]
 
@@ -128,18 +131,21 @@ script = ExtResource("1_wrvet")
 
 [node name="LeftHand" type="MeshInstance3D" parent="LeftHand"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+layers = 32
 mesh = SubResource("ArrayMesh_sugp2")
 skin = SubResource("Skin_jyhfs")
 skeleton = NodePath("../..")
 
 [node name="LHArea3D" type="Area3D" parent="LeftHand"]
+collision_layer = 32
+collision_mask = 32
 
 [node name="LHCollisionShape3D" type="CollisionShape3D" parent="LeftHand/LHArea3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-shape = SubResource("SphereShape3D_tipki")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.5)
+shape = SubResource("CapsuleShape3D_wrvet")
 
 [node name="LHMeshInstance3D" type="MeshInstance3D" parent="LeftHand"]
-layers = 513
+layers = 32
 material_override = ExtResource("3_3770h")
 mesh = SubResource("ImmediateMesh_o6xl0")
 script = ExtResource("4_ecy5y")
@@ -151,18 +157,21 @@ script = ExtResource("5_cibq4")
 
 [node name="RightHand" type="MeshInstance3D" parent="RightHand"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+layers = 512
 mesh = SubResource("ArrayMesh_tbgi4")
 skin = SubResource("Skin_tefeu")
 skeleton = NodePath("../..")
 
 [node name="RHArea3D" type="Area3D" parent="RightHand"]
+collision_layer = 512
+collision_mask = 512
 
 [node name="RHCollisionShape3D" type="CollisionShape3D" parent="RightHand/RHArea3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-shape = SubResource("SphereShape3D_85g3d")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.5)
+shape = SubResource("CapsuleShape3D_mvv4w")
 
 [node name="RHMeshInstance3D" type="MeshInstance3D" parent="RightHand"]
-layers = 513
+layers = 512
 material_override = ExtResource("6_jhdqs")
 mesh = SubResource("ImmediateMesh_85g3d")
 script = ExtResource("4_ecy5y")
@@ -172,3 +181,4 @@ script = ExtResource("4_ecy5y")
 [connection signal="body_entered" from="LeftHand/LHArea3D" to="LeftHand" method="_on_lh_area_3d_area_entered"]
 [connection signal="button_pressed" from="RightHand" to="RightHand" method="_on_button_pressed"]
 [connection signal="area_entered" from="RightHand/RHArea3D" to="RightHand" method="_on_rh_area_3d_area_entered"]
+[connection signal="body_entered" from="RightHand/RHArea3D" to="RightHand" method="_on_rh_area_3d_area_entered"]

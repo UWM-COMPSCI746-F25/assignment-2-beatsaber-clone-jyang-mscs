@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dn37wfalhkc0p"]
 
-[ext_resource type="Script" uid="uid://cjqvu18s2m3cx" path="res://scripts/block_spawner.gd" id="1_aogsa"]
+[ext_resource type="Script" uid="uid://caqot0g47x7ja" path="res://scripts/blue_block_spawner.gd" id="1_34xx2"]
 [ext_resource type="PackedScene" uid="uid://c2vv16ov5pcda" path="res://scenes/blue_block.tscn" id="2_1dh0c"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2ehg7"]
@@ -10,7 +10,7 @@ size = Vector3(3, 3, 0.25)
 albedo_color = Color(0.568973, 0.568973, 0.568973, 1)
 
 [node name="BlueBlockSpawner" type="Node3D"]
-script = ExtResource("1_aogsa")
+script = ExtResource("1_34xx2")
 block_to_spawn = ExtResource("2_1dh0c")
 
 [node name="BlockMarker" type="Marker3D" parent="."]

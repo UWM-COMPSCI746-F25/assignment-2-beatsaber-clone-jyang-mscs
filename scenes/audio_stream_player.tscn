@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bma7pvhkb1uac"]
+
+[ext_resource type="AudioStream" uid="uid://bmsb0io74yt73" path="res://audio/golden-huntrix.wav" id="1_nbeep"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_nbeep")
