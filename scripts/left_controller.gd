@@ -17,7 +17,7 @@ func _process(_delta):
 # for physics simulation
 func _physics_process(_delta):
 	
-	if saberState:
+	if saberState == true:
 		# raycast line
 		var space_state = get_world_3d().direct_space_state
 		var origin = global_position
@@ -32,7 +32,7 @@ func _physics_process(_delta):
 		
 		if result:
 			lineRender.points[1] = result.position
-			print("Collided with", + result.collider.name)
+			#print("Collided with", + result.collider.name)
 	
 	else:
 		lineRender.points[0] = Vector3(0,0,0)
@@ -44,6 +44,7 @@ func _physics_process(_delta):
 func _on_lh_area_3d_area_entered(body):
 	if body.has_method("take_damage"):
 		body.take_damage()
+	print("red block hit")
 
 
 func _on_button_pressed(name):

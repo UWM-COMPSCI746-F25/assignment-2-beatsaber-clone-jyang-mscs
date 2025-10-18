@@ -1,7 +1,10 @@
 extends XRController3D
 
+@onready var xr_camera_3d = %XRCamera3D
+
 var velocity = 0
 const RAY_LENGTH = 1
+
 @onready var lineRender = $RHMeshInstance3D
 
 var saberState = false
@@ -32,7 +35,7 @@ func _physics_process(_delta):
 		
 		if result:
 			lineRender.points[1] = result.position
-			print("Collided with", + result.collider.name)
+			#print("Collided with", + result.collider.name)
 	else:
 		lineRender.points[0] = Vector3(0,0,0)
 		lineRender.points[1] = Vector3(0,0,0)
@@ -42,6 +45,8 @@ func _physics_process(_delta):
 func _on_rh_area_3d_area_entered(body):
 	if body.has_method("take_damage"):
 		body.take_damage()
+	
+	print("blue block hit")
 
 func _on_button_pressed(name):
 	if name == "ax_button":
@@ -49,4 +54,8 @@ func _on_button_pressed(name):
 			saberState = true
 		else:
 			saberState = false
-		pass
+	
+	
+	
+	if name == "menu_button":
+		xr_camera_3d.rotation = global_rotation

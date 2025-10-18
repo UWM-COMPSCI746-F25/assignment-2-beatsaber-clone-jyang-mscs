@@ -6,7 +6,7 @@ var health = 1
 @onready var dir = Vector3(0, 0, 1)
 @onready var speed = 1
 
-@onready var player = get_node("root/Main/XROrigin3D")
+#@onready var player = get_node("root/Main/XROrigin3D")
 
 @onready var timer = %Timer
 

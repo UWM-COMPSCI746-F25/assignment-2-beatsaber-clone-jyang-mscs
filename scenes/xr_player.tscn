@@ -117,11 +117,12 @@ bind/6/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00935476, 0.00472996, -0.
 radius = 0.1
 height = 1.0
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_85g3d"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_wrvet"]
 
 [node name="XROrigin3D" type="XROrigin3D"]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 
 [node name="LeftHand" type="XRController3D" parent="."]
@@ -173,7 +174,7 @@ shape = SubResource("CapsuleShape3D_mvv4w")
 [node name="RHMeshInstance3D" type="MeshInstance3D" parent="RightHand"]
 layers = 512
 material_override = ExtResource("6_jhdqs")
-mesh = SubResource("ImmediateMesh_85g3d")
+mesh = SubResource("ImmediateMesh_wrvet")
 script = ExtResource("4_ecy5y")
 
 [connection signal="button_pressed" from="LeftHand" to="LeftHand" method="_on_button_pressed"]
