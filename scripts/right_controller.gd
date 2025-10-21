@@ -1,13 +1,11 @@
 extends XRController3D
 
-@onready var xr_camera_3d = %XRCamera3D
-
-var velocity = 0
 const RAY_LENGTH = 1
-
+var saberState = false
 @onready var lineRender = $RHMeshInstance3D
 
-var saberState = false
+@onready var rh_collision_shape_3d = $RHArea3D/RHCollisionShape3D
+var collisionState = false
 
 func _ready():
 	pass
@@ -36,9 +34,14 @@ func _physics_process(_delta):
 		if result:
 			lineRender.points[1] = result.position
 			#print("Collided with", + result.collider.name)
+			
+		rh_collision_shape_3d.disabled = false
+		
 	else:
 		lineRender.points[0] = Vector3(0,0,0)
 		lineRender.points[1] = Vector3(0,0,0)
+		
+		rh_collision_shape_3d.disabled = true
 	
 # connecting the left controller collision object
 # to the script
@@ -48,14 +51,19 @@ func _on_rh_area_3d_area_entered(body):
 	
 	print("blue block hit")
 
-func _on_button_pressed(name):
-	if name == "ax_button":
+func _on_button_pressed(right_button):
+	if right_button == "ax_button":
+		#print("A/X is pressed")
 		if saberState == false:
 			saberState = true
+			collisionState = true
 		else:
 			saberState = false
+			collisionState = false
 	
-	
-	
-	if name == "menu_button":
-		xr_camera_3d.rotation = global_rotation
+	if right_button == "menu_button":
+		#print("menu_button is pressed")
+		reset_position()
+		
+func reset_position():
+	XRServer.center_on_hmd(1, 1)

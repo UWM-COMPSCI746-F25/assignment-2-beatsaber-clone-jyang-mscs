@@ -15,6 +15,7 @@ UWM Email: yang676@uwm.edu
 
 Third Party Assets:
 - Quest 2 controllers: https://developers.meta.com/horizon/downloads/package/oculus-controller-art/
+- Block damage/hit audio: (floraphonic) https://pixabay.com/sound-effects/punch-1-166694/
 - 
 
 ## Getting Started

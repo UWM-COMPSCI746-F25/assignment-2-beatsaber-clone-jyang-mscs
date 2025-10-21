@@ -1,17 +1,11 @@
 extends XRController3D
 
-var velocity = 0
 const RAY_LENGTH = 1
+var saberState = false
 @onready var lineRender = $"LHMeshInstance3D"
 
-var saberState = false
-
-func _ready():
-	pass
-
-# actions to happen at every frame
-func _process(_delta):
-	pass
+@onready var lh_collision_shape_3d = %LHCollisionShape3D
+var collisionState = false
 
 # applies physics with the pass through value delta
 # for physics simulation
@@ -32,12 +26,15 @@ func _physics_process(_delta):
 		
 		if result:
 			lineRender.points[1] = result.position
-			#print("Collided with", + result.collider.name)
+			#print("Collided with", + result.collider.na
+		
+		lh_collision_shape_3d.disabled = false
 	
 	else:
 		lineRender.points[0] = Vector3(0,0,0)
 		lineRender.points[1] = Vector3(0,0,0)
-	
+		
+		lh_collision_shape_3d.disabled = true
 	
 # connecting the left controller collision object
 # to the script
@@ -47,9 +44,19 @@ func _on_lh_area_3d_area_entered(body):
 	print("red block hit")
 
 
-func _on_button_pressed(name):
-	if name == "ax_button":
+func _on_button_pressed(left_button):
+	if left_button == "ax_button":
+		#print("A/X is pressed")
 		if saberState == false:
 			saberState = true
+			collisionState = true
 		else:
 			saberState = false
+			collisionState = false
+			
+	elif left_button == "menu_button":
+		print("menu_button is pressed")
+		reset_position()
+		
+func reset_position():
+	XRServer.center_on_hmd(1, 1)

@@ -5,8 +5,6 @@ extends Node3D
 @onready var block_marker = %BlockMarker
 @onready var timer = %Timer
 
-
-
 var rng = RandomNumberGenerator.new()
 
 #const LEFT_BOXES_RED = preload("res://colors/left_boxes_red.tres")
@@ -26,16 +24,10 @@ func _on_timer_timeout():
 	
 	# add the node as the child of the spawner
 	add_child(new_block)
-	#block_to_spawn.emit(new_block)
 	
 	# adjust the position of the spawned block
 	new_block.global_position = block_marker.global_position
 	new_block.global_position.y = randf_range(0.5, 2.0)
-	
-	# change the color of the spawned block
-	#var material = get_node("/root/Main/BlockSpawner/Block/Block_model")
-	#material.set_surface_override_material(0, LEFT_BOXES_RED)
-
 	
 func _ready():
 	pass

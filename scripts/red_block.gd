@@ -1,18 +1,20 @@
 extends RigidBody3D
 
-signal died
-
+# variable to track health
 var health = 1
+
+# variable to track direciton block will travel
 @onready var dir = Vector3(0, 0, 1)
 @onready var speed = 1
 
-#@onready var player = get_node("root/Main/XROrigin3D")
-
+# variable for timer and adio nodes
 @onready var timer = %Timer
-
 @onready var hurt_sound = %HurtSound
 
+# variable for signal called
+signal died
 
+# code in this function gets called every frame - delta applies physics
 func _process(delta):
 	global_position += dir * (speed * delta)
 	
@@ -28,9 +30,6 @@ func take_damage():
 	if health == 0:
 		set_physics_process(false)
 		gravity_scale = 1.0
-		#var direction = global_position.direction_to(player.global_position)
-		#var randomUpwardForce = Vector3.UP * randf_range(1.0,5.0)
-		#apply_central_impulse(direction * 10 + randomUpwardForce)
 		
 		timer.start()
 		died.emit()

@@ -62,7 +62,6 @@ bind/6/bone = -1
 bind/6/pose = Transform3D(-0.129245, 0.984491, -0.118627, -0.00692742, -0.120524, -0.992686, -0.991588, -0.127478, 0.0223972, 0.00619766, 0.00227286, 0.00861042)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wrvet"]
-margin = 0.1
 radius = 0.1
 height = 1.0
 
@@ -142,6 +141,7 @@ collision_layer = 32
 collision_mask = 32
 
 [node name="LHCollisionShape3D" type="CollisionShape3D" parent="LeftHand/LHArea3D"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.5)
 shape = SubResource("CapsuleShape3D_wrvet")
 

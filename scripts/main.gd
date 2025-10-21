@@ -4,7 +4,7 @@ extends Node3D
 var xr_interface: XRInterface
 
 # loading the block spawner scene
-@onready var BlockSpawner = load("res://scripts/block_spawner.gd")
+#@onready var BlockSpawner = load("res://scripts/block_spawner.gd")
 
 func _ready():
 	
