@@ -5,7 +5,6 @@
 [ext_resource type="Material" uid="uid://j7myf8g3jrrl" path="res://colors/left_laser.tres" id="3_3770h"]
 [ext_resource type="Script" uid="uid://d0dtenw7utkgt" path="res://scripts/RedLineRenderer.gd" id="4_ecy5y"]
 [ext_resource type="Script" uid="uid://dh8ft863lpjmt" path="res://scripts/right_controller.gd" id="5_cibq4"]
-[ext_resource type="Material" uid="uid://cc0imshsvrs1h" path="res://colors/right_laser.tres" id="6_jhdqs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ise3j"]
 resource_name = "shell:quest2ControllerMAT"
@@ -61,11 +60,11 @@ bind/6/name = &"b_thumbstick"
 bind/6/bone = -1
 bind/6/pose = Transform3D(-0.129245, 0.984491, -0.118627, -0.00692742, -0.120524, -0.992686, -0.991588, -0.127478, 0.0223972, 0.00619766, 0.00227286, 0.00861042)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wrvet"]
-radius = 0.1
-height = 1.0
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_wrvet"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_o6xl0"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wrvet"]
+radius = 0.01
+height = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_tbgi4"]
 resource_name = "right_quest2_mesh"
@@ -112,11 +111,14 @@ bind/6/name = &"b_thumbstick_2"
 bind/6/bone = -1
 bind/6/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00935476, 0.00472996, -0.0027986)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mvv4w"]
-radius = 0.1
-height = 1.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4irtq"]
+albedo_color = Color(0.329412, 0.188235, 1, 0.501961)
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_wrvet"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_4irtq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mvv4w"]
+radius = 0.01
+height = 1.0
 
 [node name="XROrigin3D" type="XROrigin3D"]
 
@@ -136,20 +138,20 @@ mesh = SubResource("ArrayMesh_sugp2")
 skin = SubResource("Skin_jyhfs")
 skeleton = NodePath("../..")
 
+[node name="LHMeshInstance3D" type="MeshInstance3D" parent="LeftHand"]
+layers = 32
+material_override = ExtResource("3_3770h")
+mesh = SubResource("ImmediateMesh_wrvet")
+script = ExtResource("4_ecy5y")
+
 [node name="LHArea3D" type="Area3D" parent="LeftHand"]
 collision_layer = 32
 collision_mask = 32
 
 [node name="LHCollisionShape3D" type="CollisionShape3D" parent="LeftHand/LHArea3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.05, -0.5)
 shape = SubResource("CapsuleShape3D_wrvet")
-
-[node name="LHMeshInstance3D" type="MeshInstance3D" parent="LeftHand"]
-layers = 32
-material_override = ExtResource("3_3770h")
-mesh = SubResource("ImmediateMesh_o6xl0")
-script = ExtResource("4_ecy5y")
 
 [node name="RightHand" type="XRController3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
@@ -163,19 +165,19 @@ mesh = SubResource("ArrayMesh_tbgi4")
 skin = SubResource("Skin_tefeu")
 skeleton = NodePath("../..")
 
+[node name="RHMeshInstance3D" type="MeshInstance3D" parent="RightHand"]
+layers = 512
+material_override = SubResource("StandardMaterial3D_4irtq")
+mesh = SubResource("ImmediateMesh_4irtq")
+script = ExtResource("4_ecy5y")
+
 [node name="RHArea3D" type="Area3D" parent="RightHand"]
 collision_layer = 512
 collision_mask = 512
 
 [node name="RHCollisionShape3D" type="CollisionShape3D" parent="RightHand/RHArea3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.05, -0.5)
 shape = SubResource("CapsuleShape3D_mvv4w")
-
-[node name="RHMeshInstance3D" type="MeshInstance3D" parent="RightHand"]
-layers = 512
-material_override = ExtResource("6_jhdqs")
-mesh = SubResource("ImmediateMesh_wrvet")
-script = ExtResource("4_ecy5y")
 
 [connection signal="button_pressed" from="LeftHand" to="LeftHand" method="_on_button_pressed"]
 [connection signal="area_entered" from="LeftHand/LHArea3D" to="LeftHand" method="_on_lh_area_3d_area_entered"]

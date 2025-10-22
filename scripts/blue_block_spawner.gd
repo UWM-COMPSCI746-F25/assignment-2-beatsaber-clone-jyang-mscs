@@ -27,6 +27,7 @@ func _on_timer_timeout():
 	
 	# adjust the position of the spawned block
 	new_block.global_position = block_marker.global_position
+	new_block.global_position.x -= randf_range(0, 1.0)
 	new_block.global_position.y = randf_range(0.5, 2.0)
 	
 func _ready():

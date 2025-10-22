@@ -57,3 +57,9 @@ Please test that your submission meets these requirements.  For example, after y
 ## Acknowledgements
 
 This assignment is a modified version of an assignment from a class taught by Professor Evan Suma Rosenberg at the University of Minnesota.
+
+## Notes
+
+If the game freezes upon launch, quitting and relaunching the game should work.
+
+The Oculus button on the right controller doesn't seem to work for recentering the user but the menu button on the left controller will recenter the user.

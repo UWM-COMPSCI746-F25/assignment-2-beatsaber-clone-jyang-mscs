@@ -9,7 +9,7 @@ var collisionState = false
 
 # applies physics with the pass through value delta
 # for physics simulation
-func _physics_process(_delta):
+func _physics_process(delta):
 	
 	if saberState == true:
 		# raycast line
